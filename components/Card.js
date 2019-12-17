@@ -5,37 +5,43 @@ export default class Card extends Component{
 
     render(){
         return(
-            <View>
+            <View style={styles.card}>
                 <View>
-                    <Image
-                        style={styles.image}
-                        source={{uri: this.props.info.image == null ? 'https://i.ibb.co/YfZFr7k/noimg.png' : (this.props.info.image.original || this.props.info.image.medium) }}
-                    />
+                <Image
+                    style={styles.image}
+                    source={{uri: this.props.image}}
+                />
                 </View>
                 <View style={styles.info}>
-                    <Text>{this.props.title || 'Sem Nome'}</Text>
-                    <Text>{formatGenre(this.props.genre) || 'Sem Genero'}</Text>
+                    <Text style={styles.text}>{this.props.title || 'Sem Nome'}</Text>
+                    <Text style={styles.Text}>{this.props.genres.join(', ') || 'Sem Genero'}</Text>
                 </View>
             </View>
         )
     }
 }
-function formatGenre(genres){
-    string = '';
-    for(genre in genres){
-        string = string + genre + ", "
-    }
-    return string;
-}
 
 const styles = StyleSheet.create({
     info: {
         flexDirection: "column",
-        justifyContent: "space-around",
+        marginLeft: 10,
+        marginTop: 10,
+        alignContent: "space-between",
     }, 
     image: {
+        marginLeft: 10,
+        marginTop: 3,
+        marginBottom: 3,
         width: 80,
         height: 120,
         resizeMode: "contain",
-    }
+    },
+    card: {
+        flexDirection: "row",
+        backgroundColor: "#ebebeb",
+        borderRadius: 10,
+    },
+    text: {
+        marginBottom: 5,
+    },
 })

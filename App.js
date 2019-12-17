@@ -34,17 +34,20 @@ export default class App extends Component {
             onChangeText={(text) => this.setState({searchText: text})}
             onSubmitEditing={() => this.submitSearch()}/>
         </View>
-        <View>
-          <Text>{this.state.searchText}</Text>
+        <View style={styles.resultadosView}>
+          <Text style={styles.resultados}>{this.state.searchResults != null ? 'Resultados da Busca' : '' }</Text>
         </View>
-        <View style={styles.results}>
+        <View>
           <FlatList
             data={this.state.searchResults}
             renderItem={({ item }) => 
-              <Card 
-                title={item.show.name}
-                genre={item.show.genre}
-              />}
+              <View style={styles.cards}>
+                <Card 
+                  image={item.show.image == null ? 'https://i.ibb.co/YfZFr7k/noimg.png' : (item.show.image.original || item.show.image.medium) }
+                  title={item.show.name}
+                  genres={item.show.genres}
+                />
+              </View>}
             keyExtractor={item => item.show.id}
           />
         </View>
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 50,
-    color: '#999999',
+    color: '#ebebeb',
   },
   input: {
     fontSize: 15,
@@ -72,12 +75,26 @@ const styles = StyleSheet.create({
   }, 
   border: {
     flexDirection: 'row',
-    borderColor: '#999999',
+    borderColor: '#ebebeb',
     borderWidth: 1,
     borderRadius: 25,
     height: 50,
     width: 260,
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  cards: {
+    marginBottom: 5,
+    width: 260,
+  },
+  resultados: {
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  results: {
+    width: 260,
+  },
+  resultadosView: {
+    margin: 10,
   }
 });
