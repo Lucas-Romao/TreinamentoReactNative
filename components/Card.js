@@ -6,7 +6,13 @@ class Card extends Component{
 
     render(){
         return(
-            <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('details')}>
+            <TouchableOpacity style={styles.card} 
+                onPress={
+                    () => this.props.navigation.navigate('details', {
+                        nome: this.props.title,
+                        genero: this.props.genres.join(', '),
+                        descricao: this.props.descricao,
+                    })}>
                 <View>
                 <Image
                     style={styles.image}
