@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {withNavigation} from 'react-navigation';
 
-export default class Card extends Component{
+class Card extends Component{
 
     render(){
         return(
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('details')}>
                 <View>
                 <Image
                     style={styles.image}
@@ -20,6 +21,8 @@ export default class Card extends Component{
         )
     }
 }
+
+export default withNavigation(Card);
 
 const styles = StyleSheet.create({
     info: {

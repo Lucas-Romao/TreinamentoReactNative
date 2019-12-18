@@ -1,7 +1,8 @@
 import React,  { Component } from "react";
-import {Text, View, StyleSheet, TextInput, FlatList, Image} from 'react-native'; // 2
+import {Text, View, StyleSheet, TextInput, FlatList, Image, Button} from 'react-native'; // 2
 import api from '../service/api';
 import Card from '../components/Card';
+import Details from '../components/Details';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -66,10 +67,11 @@ class Home extends Component{
 
 const AppNavigator = createStackNavigator(
   {
-    Home: Home,
+    home: Home,
+    details: Details,
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'home'
   }
 );
 
