@@ -5,7 +5,7 @@ export default class Card extends Component{
 
     render(){
         return(
-            <View style={styles.card}>
+            <TouchableOpacity style={styles.card}>
                 <View>
                 <Image
                     style={styles.image}
@@ -16,7 +16,7 @@ export default class Card extends Component{
                     <Text style={styles.text}>{this.props.title || 'Sem Nome'}</Text>
                     <Text style={styles.Text}>{this.props.genres.join(', ') || 'Sem Genero'}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 120,
         resizeMode: "contain",
+        borderRadius: 15,
     },
     card: {
         flexDirection: "row",
