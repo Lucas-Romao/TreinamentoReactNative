@@ -46,18 +46,24 @@ class Home extends Component{
         <View style={styles.resultadosView}>
           <Text style={styles.resultados}>{this.state.searchResults != null ? 'Resultados da Busca' : '' }</Text>
         </View>
-        <View>
+        <View style={styles.flatview}>
           <FlatList
+            style={styles.flat}
             data={this.state.searchResults}
             renderItem={({ item }) => 
-              <View style={styles.cards}>
-                <Card 
-                  descricao={item.show.summary}
-                  image={item.show.image == null ? 'https://i.ibb.co/YfZFr7k/noimg.png' : (item.show.image.original || item.show.image.medium) }
-                  title={item.show.name}
-                  genres={item.show.genres}
-                />
-              </View>}
+              <View>
+                <View style={styles.maxcard}>
+                  <View style={styles.cards}>
+                    <Card 
+                      descricao={item.show.summary}
+                      image={item.show.image == null ? 'https://i.ibb.co/YfZFr7k/noimg.png' : (item.show.image.original || item.show.image.medium) }
+                      title={item.show.name}
+                      genres={item.show.genres}
+                    />
+                  </View>
+                </View>
+              </View>
+            }
             keyExtractor={item => item.show.id}
           />
         </View>
@@ -96,18 +102,18 @@ const styles = StyleSheet.create({
     padding: 15,
   }, 
   border: {
+    flex: 1,
     flexDirection: 'row',
     borderColor: '#ebebeb',
     borderWidth: 1,
     borderRadius: 25,
-    height: 50,
-    width: 260,
+    marginHorizontal: 30,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   cards: {
+    flex: 0.8,
     marginBottom: 5,
-    width: 260,
   },
   resultados: {
     fontWeight: "bold",
@@ -126,5 +132,19 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     marginLeft: 20,
+  },
+  flat: {
+    width: '100%',
+    marginBottom: 105,
+  },
+  maxcard: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  flatview: {
+    width: '100%',
   }
 });
