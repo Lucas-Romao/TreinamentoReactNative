@@ -12,6 +12,7 @@ class Card extends Component{
                         nome: this.props.title,
                         genero: this.props.genres.join(', '),
                         descricao: this.props.descricao,
+                        image: this.props.image,
                     })}>
                 <View style={styles.marcacao}>
                 <Image

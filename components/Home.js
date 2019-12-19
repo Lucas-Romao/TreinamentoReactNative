@@ -18,10 +18,12 @@ class Home extends Component{
         const response = await api.get('search/shows', {
           params: {q: this.state.searchText}
         })
-        this.setState({searchResults: response.data})
+        this.setState({searchResults: response.data});
       } catch(error) {
-        alert(JSON.stringify('erro: ' + error))
+        alert(JSON.stringify('erro: ' + error));
       }
+    } else {
+      this.setState({searchResults: null});
     }
   }
 
@@ -43,9 +45,11 @@ class Home extends Component{
             />
           </View>
         </View>
+        {this.state.searchResults != null ? (
         <View style={styles.resultadosView}>
-          <Text style={styles.resultados}>{this.state.searchResults != null ? 'Resultados da Busca' : '' }</Text>
-        </View>
+          <Text style={styles.resultados}>{'Resultados da Busca'}</Text>
+        </View>) : null}
+
         <View style={styles.flatview}>
           <FlatList
             style={styles.flat}
@@ -127,6 +131,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
+    marginBottom: 5,
   },
   lupa: {
     height: 20,
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   },
   flat: {
     width: '100%',
-    marginBottom: 105,
+    marginBottom: 110,
   },
   maxcard: {
     flexDirection: 'row',
@@ -145,6 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatview: {
+    marginTop: 5,
     width: '100%',
   }
 });
