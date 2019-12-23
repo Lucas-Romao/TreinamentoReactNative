@@ -12,6 +12,10 @@ class Home extends Component{
     searchResults: null,
   }
 
+  static navigationOptions = {
+    title: 'Home',
+  }
+
   submitSearch = async () => {
     if(this.state.searchText != ''){
       try{
@@ -82,7 +86,16 @@ const AppNavigator = createStackNavigator(
     details: Details,
   },
   {
-    initialRouteName: 'home'
+    initialRouteName: 'home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        //
+      },
+      headerTintColor: 'black',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
   }
 );
 

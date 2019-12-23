@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Text, View, ScrollView,Image, StyleSheet} from 'react-native';
 
 export default class extends Component{
+
+  static navigationOptions = {
+    title: 'Details',
+  }
+
   render() {
     return(
       <View style={styles.screen}>
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
   genre: {
     textAlign: 'center',
     textAlignVertical: 'center',
-    marginBottom: '5%',
+    marginBottom: '10%',
     width: '70%',
     height: '8%',
     fontStyle: 'italic',
