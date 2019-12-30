@@ -66,7 +66,8 @@ export default class extends Component{
                       if(Array.isArray(shows)){
                         console.log('Is array');
                         console.log('Push result: '+ shows.push(this.props.navigation.getParam('show', null)));
-                        newFav = shows.push(this.props.navigation.getParam('show', null));
+                        shows.push(this.props.navigation.getParam('show', null));
+                        newFav = shows;
                       } else {
                         console.log('is not array');
                         newFav.push(this.props.navigation.getParam('show', null));
@@ -77,7 +78,12 @@ export default class extends Component{
                       console.log('Erro ao carregar: ' + erro.message);
                     });
                   } else {
-                    this.storeData('favoriteShows', []);
+                    this.getData('favoriteShows').then((shows) => {
+                      let currentShow = this.props.navigation.getParam('show', null);
+                      let newFav = removeShowById(currentShow.id , shows);
+                      console.log('new Fav removed: ' + JSON.stringify(newFav) + '\t' + typeof newFav +  "\n\n\n")
+                      this.storeData('favoriteShows', newFav);
+                    })
                   }
                   this.setState({favorito: !this.state.favorito});
                 }
@@ -128,6 +134,21 @@ function parseText(text) {
       </View>
     )
   }
+}
+
+function removeShowById(id, shows) {
+  let i = 0
+  console.log('\n\nENTROU NO REMOVE SHOW BY ID: ' + JSON.stringify(shows) + '\n\n' + "id: " + id)
+  shows.forEach((show) => {
+    if(show.id === id){
+      console.log('\n\nShow removido: ' + shows.splice(i, 1))
+      shows.splice(i, 1);
+      return shows;
+    }
+    i++;
+  });
+  return null;
+  console.log("Erro ao remover show dos favoritos")
 }
 
 const styles = StyleSheet.create({
