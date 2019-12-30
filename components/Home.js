@@ -63,10 +63,7 @@ class Home extends Component{
                 <View style={styles.maxcard}>
                   <View style={styles.cards}>
                     <Card 
-                      descricao={item.show.summary}
-                      image={item.show.image == null ? 'https://i.ibb.co/YfZFr7k/noimg.png' : (item.show.image.original || item.show.image.medium) }
-                      title={item.show.name}
-                      genres={item.show.genres}
+                      show={item.show}
                     />
                   </View>
                 </View>
